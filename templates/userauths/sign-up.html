@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -241,35 +240,8 @@
                                     </form>
                                 </div>
 
-                                <div class="tab_content" id="tab2" style="display:none;">
+                                <div class="tab_content" id="tab2">
                                     <form method="POST" class="register">
-                                        {% csrf_token %}
-                                        {{form}}
-
-                                        <p class="utf_row_form utf_form_wide_block">
-                                            <label for="username2">
-                                                <input type="text" class="input-text" name="username" id="username2"
-                                                    value="" placeholder="Username" />
-                                            </label>
-                                        </p>
-                                        <p class="utf_row_form utf_form_wide_block">
-                                            <label for="email2">
-                                                <input type="text" class="input-text" name="email" id="email2" value=""
-                                                    placeholder="Email" />
-                                            </label>
-                                        </p>
-                                        <p class="utf_row_form utf_form_wide_block">
-                                            <label for="password1">
-                                                <input class="input-text" type="password" name="password1"
-                                                    id="password1" placeholder="Password" />
-                                            </label>
-                                        </p>
-                                        <p class="utf_row_form utf_form_wide_block">
-                                            <label for="password2">
-                                                <input class="input-text" type="password" name="password2"
-                                                    id="password2" placeholder="Confirm Password" />
-                                            </label>
-                                        </p>
                                         <input type="submit" class="button border fw margin-top-10" name="register"
                                             value="Register" />
                                     </form>
@@ -303,36 +275,18 @@
                                         <!-- <li class=""><a href="#tab1">Log In</a></li> -->
                                     </ul>
                                     <div class="tab_container alt">
-
-
+                                        
+        
                                         <div class="tab_content" id="tab2" style="display:none;">
-                                            <form method="post" class="register">
-                                                <p class="utf_row_form utf_form_wide_block">
-                                                    <label for="username2">
-                                                        <input type="text" class="input-text" name="username"
-                                                            id="username2" value="" placeholder="Username" />
-                                                    </label>
-                                                </p>
-                                                <p class="utf_row_form utf_form_wide_block">
-                                                    <label for="email2">
-                                                        <input type="text" class="input-text" name="email" id="email2"
-                                                            value="" placeholder="Email" />
-                                                    </label>
-                                                </p>
-                                                <p class="utf_row_form utf_form_wide_block">
-                                                    <label for="password1">
-                                                        <input class="input-text" type="password" name="password1"
-                                                            id="password1" placeholder="Password" />
-                                                    </label>
-                                                </p>
-                                                <p class="utf_row_form utf_form_wide_block">
-                                                    <label for="password2">
-                                                        <input class="input-text" type="password" name="password2"
-                                                            id="password2" placeholder="Confirm Password" />
-                                                    </label>
-                                                </p>
-                                                <input type="submit" class="button border fw margin-top-10"
-                                                    name="register" value="Register" />
+                                            <form method="POST" class="register">
+                                                {% csrf_token %}
+                                                {{form.full_name}}
+                                                {{form.email}}
+                                                {{form.username}}
+                                                {{form.phone}}
+                                                {{form.password1}}
+                                                {{form.password2}}
+                                                <input type="submit" class="button border fw margin-top-10" name="register" value="Register" />
                                             </form>
                                         </div>
                                     </div>
@@ -342,9 +296,8 @@
 
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <div class="category_container_item_part">
-                                <a href="#" class="category_itfem_box">
-                                    <img src="https://img.freepik.com/free-vector/tablet-login-concept-illustration_114360-7963.jpg?w=2000"
-                                        style="width: 100%; height: 420px; object-fit: cover;" alt="" />
+                                <a href="#" class="category_itfem_box"> 
+                                    <img src="https://img.freepik.com/free-vector/tablet-login-concept-illustration_114360-7963.jpg?w=2000" style="width: 100%; height: 420px; object-fit: cover;" alt=""/>
                                 </a>
                             </div>
                         </div>
@@ -353,6 +306,7 @@
                 </div>
             </div>
         </div>
+        <div class="clearfix"></div>
 
         <!-- Footer -->
         <div id="footer" class="footer_sticky_part">
