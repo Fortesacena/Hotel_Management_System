@@ -2519,7 +2519,7 @@ input[type="range"]:focus+.rangeslider .utf_rangeslider_handle {
     background: #fff;
     z-index: 112;
     opacity: 1;
-    tranition: all 0.3s;
+    transition: all 0.3s;
 }
 
 .main_input_search_part_item .chosen-container-single .chosen-single span {
