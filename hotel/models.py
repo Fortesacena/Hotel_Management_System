@@ -4,7 +4,7 @@ from shortuuid.django_fields import ShortUUIDField
 import shortuuid
 from django.utils.text import slugify
 from django.utils.html import mark_safe
-from django_ckeditor_5.fields import CKEditor5Field
+
 
 HOTEL_STATUS = (
     ("Draft", "Draft"),
@@ -59,6 +59,10 @@ class Hotel(models.Model):
     
     def thumbnail(self):
         return mark_safe('<img src="%s" width="50" height="50" style="object-fit:cover; border-radius: 6px;" />' % (self.image.url))
+    
+    def hotel_gallery(self):
+        return HotelGallery.objects.filter(hotel=self)
+    
     
 
 class HotelGallery(models.Model):

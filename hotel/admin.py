@@ -1,14 +1,18 @@
 from django.contrib import admin
-from hotel.models import Hotel, Booking, Room, RoomType
+from hotel.models import Hotel, Booking, HotelGallery, Room, RoomType
+
+class HotelGalleryInline(admin.TabularInline):
+    model = HotelGallery
 
 class HotelAdmin(admin.ModelAdmin):
-    # inlines = [HotelGallery_Tab, HotelFeatures_Tab, RoomType_Tab ,Room_Tab, HotelFAQs_Tab]
+    inlines = [HotelGalleryInline]
     # search_fields = ['user__username', 'name']
     # list_filter = ['featured', 'status']
     # list_editable = ['status']
     list_display = ['thumbnail' ,'user',  'name', 'status', 'featured' ,'views']
     # list_per_page = 100
     prepopulated_fields = {"slug": ("name", )}
+
 
 
 
