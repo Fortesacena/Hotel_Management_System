@@ -271,7 +271,8 @@
                                         <div class="tab_content" id="tab2" style="display:none;">
                                             <form method="POST" class="register">
                                                 {% csrf_token %}
-                                                {{ form.full_name }} 
+                                                {{ form.full_name }}
+                                                {{ form.email }} 
                                                 {{ form.username }}
                                                 {{ form.phone }}
                                                 {{ form.password1 }}
