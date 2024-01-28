@@ -30,7 +30,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <script src="https://unpkg.com/sweetalert2@7.8.2/dist/sweetalert2.all.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://smtpjs.com/v3/smtp.js"></script>
@@ -43,6 +43,8 @@
 </head>
 
 <body>
+
+    
 
     <!-- Preloader Start -->
     <div class="preloader">
@@ -170,6 +172,23 @@
     </div>
     <div id="bottom_backto_top"><a href="#"></a></div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+{% for message in messages %}
+    <script>
+            Swal.fire({
+                icon: '{{ message.tags }}',
+                title: '{{ message|safe }}',
+                text: '{{ message.tags|safe }}',
+                timer: 5000
+            });
+    </script>
+{% endfor %}
+
+
+
+
+
 
     <!-- Scripts -->
     <script src="{% static 'scripts/jquery-3.4.1.min.js' %}"></script>
