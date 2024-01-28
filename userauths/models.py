@@ -47,7 +47,7 @@ class Profile(models.Model):
     state = models.CharField(max_length=100, null=True, blank=True)
     address = models.CharField(max_length=1000, null=True, blank=True)
 
-    identify_type = models.FileField(max_length=200, choices=IDENTITY_TYPE, null=True, blank=True)
+    identify_type = models.CharField(max_length=200, choices=IDENTITY_TYPE, null=True, blank=True)
     identify_image = models.FileField(upload_to = user_directory_path, default="id.jpg", null=True, blank =True)
 
     facebook = models.URLField(null=True, blank= True)
