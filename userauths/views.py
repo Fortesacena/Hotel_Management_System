@@ -78,12 +78,12 @@ def loginViewTemp(request):
         password = request.POST.get('password')
 
         try:
-            user = User.objects.get(email=email)
+            user_query = User.objects.get(email=email)
 
-            user = authenticate(request, email=email, password=password)
+            user_auth = authenticate(request, email=email, password=password)
 
-            if user is not None:
-                login(request, user)
+            if user_query is not None:
+                login(request, user_auth)
                 messages.success(request, "You are Logged In")
                 # return redirect()
                 next_url = request.GET.get("next", 'hotel:index')
@@ -91,9 +91,11 @@ def loginViewTemp(request):
                 
             else:
                 messages.error(request, 'Username or password does not exit.')
+                return redirect("hotel:index")
         
         except:
             messages.error(request, 'User does not exist')
+            return redirect("hotel:index")
 
     return render(request, "userauths/sign-in.html")
 
