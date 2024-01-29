@@ -8,7 +8,7 @@
 
         {% for hotel_gallery in hotel.hotel_gallery.all %}
 
-        <a href="{{ hotel_gallery.image.url}}" data-background-image="{{hotel_gallery.image.url}}"></a>
+        <a href="{{hotel_gallery.image.url}}" data-background-image="{{hotel_gallery.image.url}}" class="item utf_gallery"></a>
 
         {% endfor %}
     </div>
