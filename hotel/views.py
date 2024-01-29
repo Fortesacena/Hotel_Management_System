@@ -3,30 +3,30 @@ from django.shortcuts import render
 from hotel.models import  Hotel, Room, Booking, RoomType
 
 def index(request):
-    hotel = Hotel.objects.filter(status="Live")
+    hotels = Hotel.objects.all()
     context = {
-        "hotel":hotel
+        "hotels":hotels
     }
     return render(request, "hotel/hotel.html", context)
 
 def hotel_detail(request, slug):
-    hotel = Hotel.objects.get(status="Live", slug=slug)
+    hotels = Hotel.objects.get(status="Live", slug=slug)
     context = {
-        "hotel":hotel,
+        "hotels":hotels,
     }
     return render(request, "hotel/hotel_detail.html", context)
 
 def room_type_detail(request, slug, rt_slug):
-    hotel = Hotel.objects.get(status="Live", slug=slug)
-    room_type = RoomType.objects.get(hotel=hotel, slug=rt_slug)
+    hotels = Hotel.objects.get(status="Live", slug=slug)
+    room_type = RoomType.objects.get(hotel=hotels, slug=rt_slug)
     rooms = Room.objects.filter(room_type=room_type, is_available=True)
 
     context= {
-        "hotel":hotel,
+        "hotels":hotels,
         "room_type":room_type,
         "rooms":rooms,
     }
-    return render(request, "hotel/room_type_detail.htnl", context)
+    return render(request, "hotel/room_type_detail.html", context)
 
     # id = request.GET.get("hotel-id")
     # adult = request.GET.get("adult")
