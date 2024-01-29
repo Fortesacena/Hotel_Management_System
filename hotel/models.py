@@ -43,7 +43,7 @@ class Hotel(models.Model):
     views = models.PositiveIntegerField(default=0)
     featured = models.BooleanField(default=False)
     hid = ShortUUIDField(unique=True, length=10, max_length=20, alphabet="abcdefghijklmnopqrstuvxyz")
-    slug = models.SlugField(null=True, blank=True)
+    slug = models.SlugField(null=True, blank=True, unique=True)
     date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -71,7 +71,7 @@ class Hotel(models.Model):
 class HotelGallery(models.Model):
     hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
     image = models.FileField(upload_to="hotel_gallery")
-    hgid = ShortUUIDField(unique=True, length=10, max_length=20, alphabet="abcdefghijklmnopqrstuvxyz")
+    hgid = ShortUUIDField(unique=True, length=10, max_length=20, alphabet="abcdefghijklmnopqrstuvwxyz")
 
     
     def __str__(self):

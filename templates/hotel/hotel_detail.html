@@ -5,9 +5,10 @@
 
 <div id="utf_listing_gallery_part" class="utf_listing_section">
     <div class="utf_listing_slider utf_gallery_container margin-bottom-0">
-        {% for image in hotel.hotel_gallery.all %}
 
-        <a href="{{hotel_gallery.image.url}}" data-background-image="{{hotel_gallery.image.url}}"></a>
+        {% for hotel_gallery in hotel.hotel_gallery.all %}
+
+        <a href="{{ hotel_gallery.image.url}}" data-background-image="{{hotel_gallery.image.url}}"></a>
 
         {% endfor %}
     </div>
