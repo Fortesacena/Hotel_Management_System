@@ -63,6 +63,9 @@ class Hotel(models.Model):
     def hotel_gallery(self):
         return HotelGallery.objects.filter(hotel=self)
     
+    def hotel_room_types(self):
+        return RoomType.objects.filter(hotel=self)
+    
     
 
 class HotelGallery(models.Model):
@@ -101,7 +104,7 @@ class RoomType(models.Model):
     date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.type} - {self.hotel.name} - {self.price}"
+        return f"{self.room_type.type} - {self.hotel.name}"
     
     class Meta:
         verbose_name_plural = "Room Type"
@@ -139,6 +142,7 @@ class Room(models.Model):
     
     def number_of_beds(self):
         return self.room_type.number_of_beds
+        
     
 
 class Booking(models.Model):

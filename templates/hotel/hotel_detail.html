@@ -67,25 +67,16 @@
                     <div class="utf_pricing_list_section">
                         <h4>Select Pass</h4>
                         <ul>
+                            {% for r in hotel.hotel_room_types.all %}
                             <li>
-                                <h5>Basic Pass <sub class="ppl-offer label-light-success">20% Off</sub></h5>
-                                <p><strong>Max :</strong> 1 Persons</p>
-                                <span>$80</span>
+                                <h5>{{r.type}}</h5>
+                                <p><strong>Price/Night:</strong>{{r.price}}/Night</p>
+                                <p><strong>Room Capacity:</strong>{{r.room_capacity}} Persons</p>
+                                <p><strong>Number of beds:</strong>{{r.number_of_beds}} Beds</p>
+                                <p><a href="{% url 'hotel:room_type_detail' hotel.slug r.slug %}" style="border-bottom:1px gray dashed; margin-top: 10px;">View More</a></p>
+                                <span>{{r.price}}</span>
                             </li>
-                            <li>
-                                <h5>Standard Pass <sub class="ppl-offer label-light-danger">10% Off</sub></h5>
-                                <p><strong>Max :</strong> 2 Persons</p>
-                                <span>$120</span>
-                            </li>
-                            <li>
-                                <h5>Golden Pass <sub class="ppl-offer label-light-success">10% Off</sub></h5>
-                                <p><strong>Max :</strong> 3 Persons</p>
-                                <span>$220</span>
-                            </li>
-                            <li>
-                                <h5><strong>Tatel Price</strong></h5>
-                                <span><strong>$440</strong></span>
-                            </li>
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>
