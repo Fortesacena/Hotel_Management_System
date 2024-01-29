@@ -10,9 +10,9 @@ def index(request):
     return render(request, "hotel/hotel.html", context)
 
 def hotel_detail(request, slug):
-    hotels = Hotel.objects.get(status="Live", slug=slug)
+    hotel = Hotel.objects.get(status="Live", slug=slug)
     context = {
-        "hotels":hotels,
+        "hotel":hotel,
     }
     return render(request, "hotel/hotel_detail.html", context)
 
