@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'user_dashboard',
     'userauths',
     'addon',
+    'booking',
 
 
 ]
