@@ -58,7 +58,8 @@
           <input type="hidden" value="{{children}}" id="children">
 
           
-        </div>  
+        </div> 
+      </div>
         <div class="col-lg-4">
             <div class=" booking_widget_box" style="border: 1px dashed rgba(42, 1, 119, 0.61); padding: 14px; border-radius: 10px;">
               <h3><i class="fa fa-calendar"></i> Booking</h3>
@@ -79,11 +80,11 @@
                           <div class="panel-dropdown-content">
                               <div class="qtyButtons">
                                   <div class="qtyTitle">Adults</div>
-                                  <input type="text" name="adult" {% if adult == None %}value="1"{% else %}value="{{adult}}"{% endif %}>
+                                  <input type="text" name="adult" {% if adult is None %}value="1"{% else %}value="{{adult}}"{% endif %}>
                               </div>
                               <div class="qtyButtons">
                                   <div class="qtyTitle">Childrens</div>
-                                  <input type="text" name="children" {% if children == None %}value="1"{% else %}value="{{children}}"{% endif %}>
+                                  <input type="text" name="children" {% if children is None %}value="1"{% else %}value="{{children}}"{% endif %}>
                               </div>
                           </div>
                       </div>
@@ -125,5 +126,5 @@
         });
     })
   </script>
-  
+
 {% endblock content %}

@@ -8,7 +8,8 @@
 
         {% for hotel_gallery in hotel.hotel_gallery.all %}
 
-        <a href="{{hotel_gallery.image.url}}" data-background-image="{{hotel_gallery.image.url}}" class="item utf_gallery"></a>
+        <a href="{{hotel_gallery.image.url}}" data-background-image="{{hotel_gallery.image.url}}"
+            class="item utf_gallery"></a>
 
         {% endfor %}
     </div>
@@ -20,10 +21,10 @@
                 <div class="utf_listing_titlebar_title">
                     <h2>{{hotel.name}} <span class="listing-tag"></span></h2>
                     <span> <a href="#utf_listing_location" class="listing-address"> <i class="sl sl-icon-location"></i>
-                            {{hotel.address}}</a> </span><br/>
-                    <span class="call_now"><i class="sl sl-icon-phone"></i>{{hotel.mobile}}</span><br/>
-                    <div class="utf_star_rating_section" data-rating="4.5"><br/>
-                        <div class="utf_counter_star_rating">(4.5) / (14 Reviews)</div><br/>
+                            {{hotel.address}}</a> </span><br />
+                    <span class="call_now"><i class="sl sl-icon-phone"></i>{{hotel.mobile}}</span><br />
+                    <div class="utf_star_rating_section" data-rating="4.5"><br />
+                        <div class="utf_counter_star_rating">(4.5) / (14 Reviews)</div><br />
                     </div>
                     <ul class="listing_item_social">
                         <li><a href="#"><i class="fa fa-bookmark"></i> Bookmark</a></li>
@@ -74,7 +75,8 @@
                                 <p><strong>Price/Night:</strong>{{r.price}}/Night</p>
                                 <p><strong>Room Capacity:</strong>{{r.room_capacity}} Persons</p>
                                 <p><strong>Number of beds:</strong>{{r.number_of_beds}} Beds</p>
-                                <p><a href="{% url 'hotel:room_type_detail' hotel.slug r.slug %}" style="border-bottom:1px gray dashed; margin-top: 10px;">View More</a></p>
+                                <p><a href="{% url 'hotel:room_type_detail' hotel.slug r.slug %}"
+                                        style="border-bottom:1px gray dashed; margin-top: 10px;">View More</a></p>
                                 <span>{{r.price}}</span>
                             </li>
                             {% endfor %}
@@ -372,81 +374,58 @@
                 data-tip-content="Purchase ticket has been verified and belongs business owner or manager."> <i
                     class="sl sl-icon-check"></i> Now Available</div>
             <div class="utf_box_widget booking_widget_box">
-                <h3><i class="fa fa-calendar"></i> Booking
-                    <div class="price">
-                        <span>120$<small>person</small></span>
-                    </div>
+                <h3><i class="fa fa-calendar"></i> Check Room Availability
                 </h3>
                 <div class="row with-forms margin-top-0">
-                    <div class="col-lg-12 col-md-12 select_date_box">
-                        <input type="text" id="date-picker" placeholder="Select Date" readonly="readonly">
-                        <i class="fa fa-calendar"></i>
-                    </div>
-                    <div class="with-forms">
-                        <div class="col-lg-12 col-md-12">
-                            <select class="utf_chosen_select_single">
-                                <option label="Select Time">Select Time</option>
-                                <option>8:00 AM - 10:00 AM</option>
-                                <option>10:00 AM - 12:00 AM</option>
-                                <option>12:00 AM - 02:00 PM</option>
-                                <option>02:00 PM - 04:00 PM</option>
-                                <option>04:00 PM - 06:00 PM</option>
-                                <option>06:00 PM - 08:00 PM</option>
-                                <option>08:00 PM - 10:00 PM</option>
-                                <option>10:00 PM - 12:00 AM</option>
-                            </select>
+                    <form class="row with-forms margin-top-0" method="POST" action="{% url 'booking:check_room_availability' %}">
+                        {% csrf_token %}
+                        <input type="text" value="{{hotel.id}}" name="hotel-id" id="">
+                        <div class="col-lg-12 col-md-12 select_date_box">
+                            <label for="">Check-in Date</label>
+                            <input type="date" value="{{checkin}}" name="checkin"
+                                placeholder="Select Date">
                         </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="panel-dropdown time-slots-dropdown">
-                            <a href="#">Select Ticket Type...</a>
-                            <div class="panel-dropdown-content padding-reset">
-                                <div class="panel-dropdown-scrollable">
-                                    <div class="time-slot">
-                                        <input type="radio" name="time-slot" id="time-slot-1">
-                                        <label for="time-slot-1">
-                                            <strong>Basic Ticket</strong>
-                                            <span>5 Ticket Available</span>
-                                        </label>
+                        <div class="col-lg-12 col-md-12 select_date_box">
+                            <label for="">Check-out Date</label>
+                            <input type="date" class="checkout_date" name="checkout" value="{{checkout}}"
+                                placeholder="Select Date">
+                        </div>
+                        <div class="with-forms">
+                            <div class="col-lg-12 col-md-12">
+                                <a href="#">Guests <span class="qtyTotal" name="qtyTotal">1</span></a>
+                                <div class="panel-dropdown-content">
+                                    <div class="qtyButtons">
+                                        <div class="qtyTitle">Adults</div>
+                                        <input type="text" name="adult" {% if adult is None %}value="1" {% else
+                                            %}value="{{adult}}" {% endif %}>
                                     </div>
-
-                                    <div class="time-slot">
-                                        <input type="radio" name="time-slot" id="time-slot-2">
-                                        <label for="time-slot-2">
-                                            <strong>Standard Ticket</strong>
-                                            <span>8 Ticket Available</span>
-                                        </label>
-                                    </div>
-
-                                    <div class="time-slot">
-                                        <input type="radio" name="time-slot" id="time-slot-3">
-                                        <label for="time-slot-3">
-                                            <strong>Golden Ticket</strong>
-                                            <span>10 Ticket Available</span>
-                                        </label>
+                                    <div class="qtyButtons">
+                                        <div class="qtyTitle">Childrens</div>
+                                        <input type="text" name="children" {% if children is None %}value="1" {% else
+                                            %}value="{{children}}" {% endif %}>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="panel-dropdown">
-                            <a href="#">Guests <span class="qtyTotal" name="qtyTotal">1</span></a>
-                            <div class="panel-dropdown-content">
-                                <div class="qtyButtons">
-                                    <div class="qtyTitle">Adults</div>
-                                    <input type="text" name="qtyInput" value="1">
-                                </div>
-                                <div class="qtyButtons">
-                                    <div class="qtyTitle">Childrens</div>
-                                    <input type="text" name="qtyInput" value="1">
-                                </div>
+
+                        <div class="with-forms margin-top-30">
+                            <div class="col-lg-12 col-md-12 ">
+                                <a href="#">Select Room Type</a>
+                                <select name="room-type" class="utf_chosen_select_single" required>
+                                    <!-- <option value="{{room_type|lower}}">{{room_type}}</option> -->
+                                    <option value="{{room_type|lower}}">{{room_type}}</option>
+
+                                    {% for r in hotel.hotel_room_types %}
+                                        <option value="{{r.slug}}">{{r.type}}</option>
+                                    {% endfor %}
+                                </select>
                             </div>
                         </div>
-                    </div>
+
+                        <button type="submit" class="utf_progress_button button fullwidth_block margin-top-5">Check
+                            Availability</button>
+                    </form>
                 </div>
-                <a href="listing_booking.html" class="utf_progress_button button fullwidth_block margin-top-5">Purchase
-                    Ticket</a>
                 <button class="like-button add_to_wishlist"><span class="like-icon"></span> Add to Wishlist</button>
                 <div class="clearfix"></div>
             </div>
