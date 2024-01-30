@@ -59,6 +59,7 @@ def add_to_selection(request):
             selection_data = request.session['selection_data_obj']
             selection_data[str(request.GET['id'])]['adult']= int(room_selection[str(request.GET['id'])]['adult'])
             selection_data[str(request.GET['id'])]['children']= int(room_selection[str(request.GET['id'])]['children'])
+            request.session['selection_data_obj'] = selection_data
         else:
             selection_data = request.session['selection_data_obj']
             selection_data.update(room_selection)

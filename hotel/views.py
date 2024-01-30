@@ -49,7 +49,8 @@ def selected_rooms(request):
     checkin = ""
     checkout = ""
 
-    if 'selection_data_obj' in request.session:  # Fix the key here
+    if 'selection_data_obj' in request.session:
+        hotel = None  # Fix the key here
         for h_id, item in request.session['selection_data_obj'].items():  # Fix the key here
             id = item['hotel_id']
             checkin = item['checkin']
@@ -69,7 +70,37 @@ def selected_rooms(request):
             print("checkin_date ========", checkin_date)
             print("checkout_date ========", checkout_date)
             print("total_days ========", total_days)
+
+            room_count += 1
+            days = total_days
+            price = room_type.price
+
+
+            room_price = price * room_count
+            total = room_price * days
+            
+
+            hotel = Hotel.objects.get(id=id)
+
+            print("Hotel =====", hotel)
+
+            print(type(id))
+            print("total =====", total)
+
+        context = {
+            "data": request.session ['selection_data_obj'],
+            "total_selected_items": len(request.session ['selection_data_obj']),
+            "total": total,
+            "total_days": total_days,
+            "adult": adult,
+            "children": children,
+            "checkin": checkin,
+            "checkout":checkout,
+            "hotel": hotel,
+
+        }
+        return render(request, "hotel/selected_rooms.html", context)
     else:
         messages.warning(request, "No selected room ")
         return redirect("/")
-    return render(request, "hotel/selected_rooms.html")
+
