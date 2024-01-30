@@ -49,16 +49,16 @@ def selected_rooms(request):
     checkin = ""
     checkout = ""
 
-    if 'selected_data_obj' in request.session:
-        for h_id, item in request.session['session_data_obj'].items():
-            id = int(item['hotel_id'])
-            checkin = int(item['checkin'])
-            checkout = int(item['checkout'])
+    if 'selection_data_obj' in request.session:  # Fix the key here
+        for h_id, item in request.session['selection_data_obj'].items():  # Fix the key here
+            id = item['hotel_id']
+            checkin = item['checkin']
+            checkout = item['checkout']
             children = int(item['children'])
             room_type_ = int(item['room_type'])
             room_id = int(item['room_id'])
 
-            room_type = RoomType.objects.get(id = room_type_)
+            room_type = RoomType.objects.get(id=room_type_)
 
             date_format = "%Y-%m-%d"
             checkin_date = datetime.strptime(checkin, date_format)
@@ -73,4 +73,3 @@ def selected_rooms(request):
         messages.warning(request, "No selected room ")
         return redirect("/")
     return render(request, "hotel/selected_rooms.html")
-
