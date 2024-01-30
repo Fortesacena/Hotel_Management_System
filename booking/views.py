@@ -36,6 +36,7 @@ def check_room_availability(request):
         return redirect("hotel:index")
     
 def add_to_selection(request):
+    print(request.POST)
     room_selection = {}
 
     room_selection[str(request.GET['id'])] = {
@@ -67,8 +68,7 @@ def add_to_selection(request):
 
     data = {
         "data": request.session['selection_data_obj'],
-        "name": "Admin",
-        "total_selected_items": request.session['selection_data_obj']
+        "total_selected_items": len(request.session['selection_data_obj'])
 
     }
 
