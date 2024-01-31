@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'hotel',
     'user_dashboard',
     'userauths',
-    'addon',
     'booking',
 
 
@@ -148,7 +147,6 @@ JAZZMIN_SETTINGS = {
     "welcome_sign": "Welcome to Admin, Login Now.",
     "topmenu_links": [
         {"name": "Home", "url": "admin:index", "permissions": ["auth.view_user"]},
-        {"name": "Company", "url": "/admin/addons/company/"},
         {"name": "Users", "url": "/admin/userauths/user/"},
         {"model": "AUTH_USER_MODEL.User"},
     
@@ -163,7 +161,6 @@ JAZZMIN_SETTINGS = {
         "hotel.Guest",
         "hotel.RoomServices",
         "userauths",
-        "addons",
 
     ],
 
