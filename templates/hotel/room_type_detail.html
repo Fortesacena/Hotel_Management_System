@@ -42,7 +42,7 @@
                   </ul>
                   <input type="hidden" class="room_id_{{r.id}}" value="{{r.id}}" id="room_id">
                   <input type="hidden" class="room_number_{{r.id}}" value="{{r.room_number}}" id="room_number">
-                  <button class="button border add-to-selection" data-index="{{r.id}}"><i class="fas fa-shopping-cart"></i> Add To Selection</button> 
+                  <button onclick="redirectToSelectedRooms()" class="button border add-to-selection" data-index="{{r.id}}"><i class="fas fa-shopping-cart"></i> Add To Selection</button> 
               </div>
               </div>
           {% endfor %}
@@ -125,6 +125,11 @@
             console.log('Selected date:', selectedDate);
         });
     })
+  </script>
+  <script>
+    function redirectToSelectedRooms() {
+      window.location.href = "/selected_rooms/";
+    }
   </script>
 
 {% endblock content %}
