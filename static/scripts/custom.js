@@ -79,3 +79,35 @@ $(document).ready(function(){
 
     })
 })
+
+$(document).on('click','.delete-item',function(){
+    var id = $(this).attr('data-item');
+    var button = $(this);
+    
+    $.ajax({
+        url:'/booking/delete_selection/',
+        data:{
+            'id':id,
+        },
+        dataType:'json',
+        beforeSend:function(){
+            button.text('...');
+        },
+        success:function(res){
+            $(".room-count").text(res.total_selected_items);
+            $(".selection-list").html(res.data);
+
+            if (res.total_selected_items < 1) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'No Selections Yet...',
+                    text: "Add some selection to continue to cart..."
+                }).then((result) => {
+                    window.location.href = "/"
+                  });
+
+                
+            }
+        }
+    });
+}); 
